@@ -1,0 +1,13 @@
+<div class="center">
+  
+  <div class="avatar">
+    <%= image_tag @fighter.avatar.url, size: '150x150', class: "img-circle" %>
+  </div>
+  
+  <div class="profile-information">
+    <b><%= @fighter.first_name %> <%= @fighter.last_name %></b></br>
+    <%= @fighter.description %></br>
+    <%= @fighter.experience_points %> points
+  </div> 
+  
+</div>

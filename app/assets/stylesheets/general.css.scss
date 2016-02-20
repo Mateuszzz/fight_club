@@ -1,0 +1,94 @@
+/* mixin */
+@mixin margin($left: 25px, $top: 0px, $right: 25px, $bootom: 0px) {
+    margin-left: $left;
+    margin-right: $right;
+    margin-top: $top;
+    margin-bootom: $bootom;
+}
+
+@mixin center{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); 
+}
+
+/* header */
+header{
+    @include margin;
+    
+    /* navbar */
+    .navbar-fluid{
+        @include margin;
+    }
+}
+
+/* content */
+.content{
+    
+    .center{
+       @include center; 
+    }
+    
+    h1{
+        margin-bottom: 25px;
+        text-align: center;
+    }
+    
+    .line{
+        hr {
+            color: gray;
+            background: gray;
+            height: 2px;
+        }
+    }
+     
+     /* user form */
+    .user-form{
+        width: 300px;
+        position: absolute;
+        left: 50%;
+        @include margin(-150px, 0px, 0px, 10px);
+    }
+    
+    .delete-user{
+        text-align: center;
+    }
+    
+    /* forms */
+    .form-inputs{
+        
+        input, textarea{
+            width: 100% ;
+            margin-bottom: 10px;
+        }
+        
+        label{
+            float: left;
+        }
+    }
+    
+    .form-action{
+        text-align: center;
+        margin-top: 20px;
+    }
+    
+    /* home page */
+    .home{
+        font-size: 22px;
+        text-align: center;
+        .title{
+            font-size: 45px;
+        }
+    }
+    
+    /* user profile */
+    .avatar{
+        margin-bottom: 10px;
+    }
+    
+    .profile-information{
+        font-size: 15px;
+        text-align: center;
+    }
+}
