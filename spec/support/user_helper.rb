@@ -9,4 +9,12 @@ module  UserHelper
     click_button 'Create Fighter'
   end
   
+  def add_skill_to_fighter(fighter, skill)
+    visit fighter_path(fighter)
+    click_link('Add skill')
+    fill_in 'skill[name]', with: skill.name
+    fill_in 'skill[level]', with: skill.level
+    click_button 'Add Skill'
+  end
+  
 end

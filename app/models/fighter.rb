@@ -1,6 +1,7 @@
 class Fighter < ActiveRecord::Base
   before_validation :default_values, on: :create
 
+  has_many :skills, dependent: :destroy
   
   validates :first_name, presence: true, length: {minimum: 2, maximum: 50}
   validates :last_name, presence: true, length: {minimum: 1, maximum: 50}

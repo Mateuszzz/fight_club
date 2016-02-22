@@ -8,6 +8,12 @@
     <b><%= @fighter.first_name %> <%= @fighter.last_name %></b></br>
     <%= @fighter.description %></br>
     <%= @fighter.experience_points %> points
-  </div> 
+  </div>
+
+  <% if @fighter.skills.count < 2 %>
+    <%= link_to "Add skill",  new_fighter_skill_path(@fighter) %> to active a fighter
+  <% elsif @fighter.skills.count < 9 %>
+    <%= link_to "Add skill", new_fighter_skill_path(@fighter) %>
+  <% end %>
   
 </div>
