@@ -22,11 +22,6 @@ RSpec.describe Fighter, :type => :model do
       expect(fighter).not_to be_valid
     end
     
-    it "is invalid with too short first name" do
-      fighter.first_name = "a"
-      expect(fighter).not_to be_valid
-    end
-    
     it "is invalid with too long first name" do
       fighter.first_name = "a" * 51
       expect(fighter).not_to be_valid
@@ -60,6 +55,12 @@ RSpec.describe Fighter, :type => :model do
     it "is invalid without a avatar" do
       fighter.avatar = nil
       expect(fighter).not_to be_valid
-    end   
+    end
+    
+    it "is invalid with duplication combination of first name and last name" do
+      second_fighter = FactoryGirl.create(:fighter, first_name: fighter.first_name, last_name: fighter.last_name)
+      
+      expect(fighter).not_to be_valid
+    end
   end
 end

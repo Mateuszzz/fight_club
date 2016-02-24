@@ -50,4 +50,5 @@ group :development, :test do
   gem 'rspec-html-matchers'
   gem 'capybara'
   gem "factory_girl_rails"
+  gem "faker"
 end

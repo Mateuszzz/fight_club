@@ -1,0 +1,29 @@
+<div class="fighter-form">
+
+  <h1>New Fight</h1>
+  
+  <div class="row">
+    <%= form_for(@fight) do |f| %>
+  
+      <%= render 'shared/error_communicat', object: f.object %>
+
+      <div class="form-inputs">  
+        <div class="field">
+          <%= f.label :first_fighter %><br>
+          <%= f.select :first_fighter_id, @fighters.collect{ |u| ["#{u.first_name} #{u.last_name}", u.id] }, include_blank: true %>
+        </div>
+      
+        <div class="field">
+          <%= f.label :second_fighter %><br>
+          <%= f.select :second_fighter_id, @fighters.collect{ |u| ["#{u.first_name} #{u.last_name}", u.id] }, include_blank: true %>
+        </div>
+      
+      </div>  
+        
+      <div class="form-action">
+        <%= f.submit "Fight", class: "btn btn-danger btn-lg" %>
+      </div>
+    
+    <% end %>
+  </div>
+</div>  

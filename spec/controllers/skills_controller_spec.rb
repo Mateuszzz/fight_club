@@ -5,16 +5,27 @@ RSpec.describe SkillsController, :type => :controller do
   let(:skill) { FactoryGirl.build(:skill) }
 
   describe "GET #new" do
-    before do
-      get :new, fighter_id: skill.fighter_id
+    context 'when fighter can add new skill' do
+      before do
+        get :new, fighter_id: skill.fighter_id
+      end
+    
+      it "returns http success" do
+        expect(response).to be_success
+      end
+    
+      it "renders the new template" do
+        expect(response).to render_template(:new)
+      end
     end
     
-    it "returns http success" do
-      expect(response).to be_success
-    end
-    
-    it "renders the new template" do
-      expect(response).to render_template(:new)
+    context 'when fighter can not add new skill' do
+      it "redirect to fighter" do
+        fighter = FactoryGirl.create(:fighter_with_skills, skills_count: 9)
+        get :new, fighter_id: fighter.id
+      
+        expect(response).to redirect_to(fighter)
+      end  
     end
   end
   

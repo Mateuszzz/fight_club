@@ -41,7 +41,7 @@ RSpec.describe Skill, :type => :model do
     end
     
     it "is invalid with duplication combination of fighter and name" do
-      second_skill = FactoryGirl.create(:skill, fighter_id: skill.fighter_id)
+      second_skill = FactoryGirl.create(:skill, fighter_id: skill.fighter_id, name: skill.name)
       
       expect(skill).not_to be_valid
     end

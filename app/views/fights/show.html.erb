@@ -1,0 +1,42 @@
+<div class="center">
+  <div class="home">
+  
+  <ul class="list-inline">
+    
+    <li>  
+      <%= image_tag @fight.first_fighter.avatar.url, size: '100x100', class: "img-circle" %>
+      
+      <div class="profile-information">
+        <%= link_to fighter_path(@fight.first_fighter) do %>
+          <b><%= @fight.first_fighter.first_name %> <%= @fight.first_fighter.last_name %></b>
+        <% end %>
+      </div>
+    </li>
+  
+    <li>
+      <div class="fight">VS</div>
+    </li>
+  
+    <li>
+      <%= image_tag @fight.second_fighter.avatar.url, size: '100x100', class: "img-circle" %>
+      
+      <div class="profile-information">
+        <%= link_to fighter_path(@fight.second_fighter) do %>
+          <b><%= @fight.second_fighter.first_name %> <%= @fight.second_fighter.last_name %></b>
+        <% end %>
+      </div>
+    </li>
+  </ul>
+  
+  <div class="fight">Winner</div>
+  
+  <%= image_tag @winner.avatar.url, size: '100x100', class: "img-circle" %>
+  
+    <div class="profile-information">
+      <%= link_to fighter_path(@winner) do %>
+          <b><%= @winner.first_name %> <%= @winner.last_name %></b>
+      <% end %>
+    </div>
+  
+  </div>
+</div>
