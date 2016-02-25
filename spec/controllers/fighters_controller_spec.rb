@@ -32,7 +32,7 @@ RSpec.describe FightersController, :type => :controller do
   
   describe "Post #create" do
    
-    context 'when data is valid' do  
+    context "when data is valid" do  
       it "redirect to fighter" do
         post :create, fighter: attributes_for(:fighter, avatar: fixture_file_upload('image.jpg', 'image/jpg'))
       
@@ -40,7 +40,7 @@ RSpec.describe FightersController, :type => :controller do
       end
     end
     
-    context 'when data is invalid' do
+    context "when data is invalid" do
       before do
          post :create, fighter: attributes_for(:fighter, avatar: "")
       end

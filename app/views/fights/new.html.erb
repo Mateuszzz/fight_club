@@ -16,12 +16,11 @@
         <div class="field">
           <%= f.label :second_fighter %><br>
           <%= f.select :second_fighter_id, @fighters.collect{ |u| ["#{u.first_name} #{u.last_name}", u.id] }, include_blank: true %>
-        </div>
-      
+        </div>      
       </div>  
         
       <div class="form-action">
-        <%= f.submit "Fight", class: "btn btn-danger btn-lg" %>
+        <%= f.submit "Fight", class: "btn btn-danger" %>
       </div>
     
     <% end %>

@@ -26,6 +26,8 @@ header{
 /* content */
 .content{
     
+    @include margin(25px, 50px, 25px, 0px);
+    
     .center{
        @include center; 
     }
@@ -48,8 +50,22 @@ header{
         }
     }
     
-    /* forms */
+    .fighters {
+        list-style: none;
+        margin-top: 25px;
+        
+        li {
+        overflow: auto;
+        padding: 10px 0;
+        } 
+    }
     
+    .place {
+        font-size: 28px;
+        margin-right: 25px;
+    }
+    
+    /* forms */   
     .fighter-form{
         width: 300px;
         position: absolute;
@@ -91,13 +107,36 @@ header{
     }
     
     /* user profile */
+    .profile{
+        width: 700px;
+        text-align: center;
+        position: absolute;
+        left: 50%;
+        @include margin(-350px, 25px, 0px, 10px);
+    }
+    
     .avatar{
         margin-bottom: 10px;
     }
     
     .profile-information{
         font-size: 15px;
+        margin-bottom: 35px;
+    }
+    
+    .skills{
+        max-width: 60%;
+        margin: 0 auto; 
         text-align: center;
+    }
+    
+    .fights{
+        margin-top: 35px;
+    }
+    
+    .big{
+        font-size: 18px;
+        font-weight: bold;
     }
     
     /* fight */

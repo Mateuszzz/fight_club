@@ -1,2 +1,40 @@
-<h1>Fighters#index</h1>
-<p>Find me in app/views/fighters/index.html.erb</p>
+<h1>All fighters</h1>
+
+<div class="search">
+  <%= form_tag(fighters_path, method: "get", id: "search-form") do %>
+  
+    <div class="form-group col-xs-6">
+      <%= text_field_tag :first_params, params[:first_params], class: "form-control input-sm", placeholder: "First name..." %>
+    </div>
+    
+    <div class="form-group col-xs-6">
+      <%= text_field_tag :second_params, params[:second_params], class: "form-control input-sm", placeholder: "Last name..." %>
+    </div>
+    
+    <div class="form-action">
+      <%= submit_tag "Search", class: "btn btn-primary btn-sm" %>
+    </div>  
+      
+  <% end %>  
+</div>
+
+<%= render 'shared/pagination', object: @fighters %>
+
+<% if @fighters.present? %>
+
+  <ul class="fighters">
+    <% @fighters.each do |fighter| %>
+    
+      <li>
+        <%= render 'shared/avatar', locals: {fighter: fighter, size: "75x75", class: "img-rounded"} %>
+        <%= link_to "#{fighter.first_name} #{fighter.last_name}", fighter %>
+      </li>
+      
+    <% end %>
+  </ul>
+
+<% else %>    
+   <div>No fighters found.</div>
+<% end %>
+
+<%= render 'shared/pagination', object: @fighters %>

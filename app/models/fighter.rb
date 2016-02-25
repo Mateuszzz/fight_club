@@ -1,11 +1,10 @@
 class Fighter < ActiveRecord::Base
   before_validation :default_values, on: :create
 
-  scope :find_active, -> { joins(:skills).group('fighter_id').having('count(fighter_id) >=2 ') }
-
   has_many :skills, dependent: :destroy
   has_many :fights, :class_name => "Fight", :foreign_key => "first_fighter_id", dependent: :destroy
   has_many :inverse_fights, :class_name => "Fight", :foreign_key => "second_fighter_id", dependent: :destroy
+  has_many :won_fights, :class_name => "Fight", :foreign_key => "winner_id", dependent: :destroy
   
   validates :first_name, presence: true, length: {minimum: 1, maximum: 50}
   validates :last_name, presence: true, length: {minimum: 1, maximum: 50}
@@ -19,5 +18,25 @@ class Fighter < ActiveRecord::Base
   
   def default_values
     self.experience_points = 0     
+  end
+  
+  def all_fights
+    fights | inverse_fights
+  end
+  
+  def self.find_active
+    joins(:skills).group('fighter_id').having('count(fighter_id) >=2 ')
+  end
+  
+  def self.find_fighter(first_name, last_name) 
+    if first_name.empty?
+      where("last_name like ?", "%#{last_name}%")
+      
+    elsif last_name.empty?
+      where("first_name like ?", "%#{first_name}%")
+      
+    else
+      where("first_name like ? OR last_name like ?", "%#{first_name}%", "%#{last_name}%")
+    end
   end
 end

@@ -44,6 +44,12 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin]
 #Use bootstrap in appliaction
 gem 'bootstrap-sass', '~> 3.3.5'
 
+#Use paginate
+gem 'will_paginate', '~> 3.0.6'
+
+#Use bootstrap to pagination
+gem 'will_paginate-bootstrap', '~> 1.0.1'
+
 # Use Rspec to test app
 group :development, :test do
   gem 'rspec-rails', '~> 3.0'

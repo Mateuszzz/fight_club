@@ -19,8 +19,7 @@ class FightsController < ApplicationController
     create_fight
     @fight.winner_id = @winner_id
      
-    if @fight.save
-        
+    if @fight.save      
       @fight.first_fighter.update(experience_points: @first_fighter_add_point)
       @fight.second_fighter.update(experience_points: @second_fighter_add_point)
       

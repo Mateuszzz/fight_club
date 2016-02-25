@@ -1,0 +1,22 @@
+<h1>Ranking fighters</h1>
+
+<%= render 'shared/pagination', object: @fighters %>
+
+<ul class="fighters">
+  <% @fighters.each_with_index do |fighter, index| %>
+  
+    <li>     
+      <% if params[:page] %>
+        <% @rank += (params[:page].to_i-1) * @per_page %>
+      <% end %>  
+      
+      <span class="place"><%= "#{index + @rank}." %></span>
+      <%= render 'shared/avatar', locals: {fighter: fighter, size: "75x75", class: "img-rounded"} %>
+      <%= link_to "#{fighter.first_name} #{fighter.last_name}", fighter %>
+      <b> - <%= "#{fighter.experience_points} point(s)" %></b>
+    </li>
+    
+  <% end %>
+</ul>
+
+<%= render 'shared/pagination', object: @fighters %>

@@ -1,19 +1,72 @@
-<div class="center">
+<div class="profile">
   
   <div class="avatar">
-    <%= image_tag @fighter.avatar.url, size: '150x150', class: "img-circle" %>
+    <%= render 'shared/avatar', locals: {fighter: @fighter, size: "150x150", class: "img-circle"} %>
   </div>
   
   <div class="profile-information">
-    <b><%= @fighter.first_name %> <%= @fighter.last_name %></b></br>
+    <span class="big"><%= @fighter.first_name %> <%= @fighter.last_name %></span></br>
     <%= @fighter.description %></br>
-    <%= @fighter.experience_points %> points
+    <%= @fighter.experience_points %> point(s)</br>
+    <%= @fighter.all_fights.count %> fight(s)</br>
+    <%= @fighter.won_fights.count %> won fight(s)</br>
+    
+    <% if @fighter.skills.count < 2 %>
+      <%= link_to "Add skill to active a fighter",  new_fighter_skill_path(@fighter) %> 
+    <% elsif @fighter.skills.count < 9 %>
+      <%= link_to "Add skill", new_fighter_skill_path(@fighter) %>
+    <% end %>
   </div>
-
-  <% if @fighter.skills.count < 2 %>
-    <%= link_to "Add skill",  new_fighter_skill_path(@fighter) %> to active a fighter
-  <% elsif @fighter.skills.count < 9 %>
-    <%= link_to "Add skill", new_fighter_skill_path(@fighter) %>
-  <% end %>
   
+  <div class="skills">
+    <span class="big">Skills</span>
+     <table class="table">
+      
+      <thead>     
+        <tr>
+          <th>No.</th>
+          <th>Name</th>
+          <th>Level</th>
+        </tr>
+      </thead>
+    
+      <tbody>     
+        <% @fighter.skills.each_with_index do |skill, index| %>
+          <tr>
+            <th><%= index + 1 %></th>
+            <td class="text-left"><%= skill.name %></td>
+            <td class="text-left"><%= skill.level %></td>
+          </tr> 
+        <% end %>
+      </tbody>
+      
+    </table>  
+  </div>
+  
+  <div class="fights">
+    <span class="big">Fights</span> 
+    <table class="table">
+      
+      <thead>  
+        <tr>
+          <th>No.</th>
+          <th>First Fighter</th>
+          <th>Second Fighter</th>
+          <th>Winner</th>
+        </tr>
+      </thead>
+    
+      <tbody>     
+        <% @fighter.all_fights.each_with_index do |fight, index| %> 
+          <tr>
+            <th><%= index + 1 %></th>
+            <td class="text-left"><%= "#{fight.first_fighter.first_name} #{fight.first_fighter.last_name}" %></td>
+            <td class="text-left"><%= "#{fight.second_fighter.first_name} #{fight.second_fighter.last_name}" %></td>
+            <td class="text-left"><%= "#{fight.winner.first_name} #{fight.winner.last_name}" %></td>
+          </tr>  
+        <% end %>
+      </tbody>
+      
+    </table>  
+  </div> 
 </div>
