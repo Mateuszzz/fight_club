@@ -1,4 +1,6 @@
 class Fight < ActiveRecord::Base
+  include FightSymulator
+  
   belongs_to :first_fighter, class_name: "Fighter"
   belongs_to :second_fighter, class_name: "Fighter"
   belongs_to :winner, class_name: "Fighter"
